@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'ascents-backend
+
+  AWS repo for ascents-backend
+
+  '
+Globals:
+  Function:
+    Timeout: 10
+Outputs:
+  AscentsApi:
+    Description: API Gateway endpoint URL for Prod stage for Ascents function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ascents/
+  AscentsFunction:
+    Description: Ascents Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - AscentsFunction
+      - Arn
+  AscentsFunctionIamRole:
+    Description: Implicit IAM Role created for Ascents function
+    Value:
+      Fn::GetAtt:
+      - AscentsFunctionRole
+      - Arn
+Resources:
+  AscentsFunction:
+    Properties:
+      CodeUri: s3://ascents-backend/8328b4ed21ad2392409b2c1ca351a097
+      Events:
+        Ascents:
+          Properties:
+            Method: get
+            Path: /ascents
+          Type: Api
+      Handler: app.lambdaHandler
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

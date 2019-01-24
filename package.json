@@ -1,0 +1,20 @@
+{
+  "name": "ascents-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tieme van Veen <tiemevanveen@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "init":  "aws s3 mb s3://ascents-backend",
+    "start": "watch 'yarn run do_build' ./ascents/",
+    "server": "sam local start-api",
+    "deploy": "yarn run do_build && yarn run do_package && yarn run do_deploy && yarn run do_review",    
+    "do_build": "sam build --use-container",
+    "do_package": "sam package --s3-bucket ascents-backend --output-template-file packaged.yaml",
+    "do_deploy": "sam deploy --template-file packaged.yaml --stack-name ascents-backend --capabilities CAPABILITY_IAM",
+    "do_review": "aws cloudformation describe-stacks --stack-name ascents-backend --query 'Stacks[].Outputs'"
+  },
+  "dependencies": {
+    "watch": "^1.0.2"
+  }
+}
