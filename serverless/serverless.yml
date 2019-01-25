@@ -1,0 +1,19 @@
+# For full config options, check the docs:
+#    docs.serverless.com
+
+service: ascents-backend-serverless
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: eu-central-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  fetchAscents:
+    handler: handler.fetchAscents
+    events:
+      - http: ANY /

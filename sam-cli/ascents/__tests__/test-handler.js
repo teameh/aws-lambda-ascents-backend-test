@@ -1,6 +1,6 @@
 "use strict";
 
-const app = require("../../app.js");
+const app = require("../app.js");
 
 describe("Tests index", function() {
   it("verifies successful response", async () => {
@@ -20,6 +20,6 @@ describe("Tests index", function() {
     let response = JSON.parse(result.body);
     expect(typeof response).toBe("object");
     expect(typeof response.ascents).toBe("object");
-    expect(typeof response.ascents[30]).toBe("string");
+    expect(typeof response.ascents[30]).toBe("object");
   });
 });

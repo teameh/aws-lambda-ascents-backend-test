@@ -1,0 +1,39 @@
+{
+  "name": "ascents",
+  "version": "1.0.0",
+  "description": "Ascents backend",
+  "main": "app.js",
+  "repository": "https://github.com/teameh/aws-lambda-ascents-backend-test",
+  "author": "Tieme van Veen <tiemevanveen@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.3.0",
+    "xml2js": "^0.4.19"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "serverless offline start",
+    "deploy": "serverless deploy -v",
+    "remove": "serverless remove"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "jest": "^23.6.0",
+    "mocha": "^5.1.1",
+    "serverless-offline": "^4.2.0",
+    "watch": "^1.0.2"
+  },
+  "prettier": {
+    "formatOnSave": true
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "node": true
+    }
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
